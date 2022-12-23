@@ -6,20 +6,15 @@
 # @Detail  : 
 # @Software: PyCharm
 import logging
-import os.path
-
 import flet as ft
 from flet_controls.flet_base import get_text_input, get_list_title_for_expand
-import weakref
-from copy import deepcopy
 from configparser import ConfigParser
 from typing import List, Dict
 
 
-
 class IniControls(ft.UserControl):
 
-    def load(self, config_data: Dict[str, ConfigParser], encoding="utf-8", save_func=None):
+    def load(self, config_data: Dict[str, ConfigParser], save_func=None):
         """
         加载用户数据，不能再init中初始化
         :param config_data: ini内容传递，key是名称（独立）， 内容是ConfigParser
@@ -65,8 +60,6 @@ class IniControls(ft.UserControl):
 
         def click_on_section(e):
             columns_content.controls.clear()
-            # 上方空10个像素
-            columns_content.controls.append(ft.Container(height=10))
             save_button = ft.TextButton(text="保存", on_click=lambda e: self._save_cfg(e, file_name), disabled=True)
             # 增加保存按钮
             columns_content.controls.append(ft.Container(content=save_button))
